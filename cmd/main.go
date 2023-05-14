@@ -6,7 +6,8 @@ import (
 	"os/signal"
 	"syscall"
 
-	"github.com/joho/godotenv"
+	fc "github.com/boskuv/Finance-Control-API"
+
 	"github.com/sirupsen/logrus"
 )
 
@@ -24,9 +25,9 @@ import (
 func main() {
 	logrus.SetFormatter(new(logrus.JSONFormatter))
 
-	if err := godotenv.Load(); err != nil {
-		logrus.Fatalf("error loading env variables: %s", err.Error())
-	}
+	// if err := godotenv.Load(); err != nil {
+	// 	logrus.Fatalf("error loading env variables: %s", err.Error())
+	// }
 
 	srv := new(fc.Server)
 
