@@ -7,6 +7,9 @@ import (
 	"syscall"
 
 	fc "github.com/boskuv/Finance-Control-API"
+	"github.com/boskuv/Finance-Control-API/pkg/handler"
+
+	//"github.com/boskuv/Finance-Control-API/pkg/service"
 
 	"github.com/sirupsen/logrus"
 )
@@ -29,7 +32,12 @@ func main() {
 	// 	logrus.Fatalf("error loading env variables: %s", err.Error())
 	// }
 
+	handlers := new(handler.Handler)
+
 	srv := new(fc.Server)
+	if err := srv.Run( "8008", handlers.InitRoutes()); err != nil {
+		logrus.Fatalf("error occured while running http server: %s", err.Error())
+	}
 
 	logrus.Print("TodoApp Started")
 
